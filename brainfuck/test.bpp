@@ -1,0 +1,8 @@
+var a
+a := 26
+
+loop a
+	a := a + 64
+	print a
+	a := a - 65
+end
