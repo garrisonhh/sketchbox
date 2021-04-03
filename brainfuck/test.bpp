@@ -1,8 +1,16 @@
-var a
-a := 26
-
-loop a
-	a := a + 64
-	print a
-	a := a - 65
-end
+var x1
+input x1
+var y1
+input y1
+var w1
+input w1
+var h1
+input h1
+var x2
+input x2
+var y2
+input y2
+var w2
+input w2
+var h2
+input h2

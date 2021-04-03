@@ -209,9 +209,12 @@ class ProgramBuilder:
         var = self.loops.pop()
         self.bfk += "END_LOOP:\n%s ]\n" % (self._goto_var(var),)
 
-    # TODO generalize to expr?
+    # TODO generalize these to expr?
     def print_var(self, var):
         self.bfk += "PRINT_VAR %s:\n%s .\n" % (var, self._goto_var(var))
+
+    def input_var(self, var):
+        self.bfk += "INPUT_VAR %s:\n%s ,\n" % (var, self._goto_var(var))
 
 def syntax_error(message):
     print(f"B++ SYNTAX ERROR:\n{message}\n")
@@ -259,6 +262,11 @@ def transpile_recursive(pb, lines):
             elif tokens[0] == "print":
                 if len(tokens) == 2 and tokens[1] in pb.vars:
                     pb.print_var(tokens[1])
+                else:
+                    syntax_error(line)
+            elif tokens[0] == "input":
+                if len(tokens) == 2 and tokens[1] in pb.vars:
+                    pb.input_var(tokens[1])
                 else:
                     syntax_error(line)
             else:
